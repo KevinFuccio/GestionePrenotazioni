@@ -34,8 +34,12 @@ public class PrenotazioneService {
 	public void createPrenotazione(Utente u, Postazione a,LocalDate s) {
 			
 		if(a.isLibero() == true) {
-			Prenotazione p = customPrenotazione.getObject();
-			
+			System.out.println(u.getPrenotazioni());
+			System.out.println(s);
+			Boolean b = u.getPrenotazioni().stream().map(e-> e.getPrenotazionePostazione()).collect(Collectors.toList()).contains(s);
+			if(!b) {
+				
+				Prenotazione p = customPrenotazione.getObject();			
 				p.setPrenotazionePostazione(s);
 				p.setFinePrenotazionePostazione(s.plusDays(1));
 				p.setUtente(u);
@@ -43,8 +47,11 @@ public class PrenotazioneService {
 				p.getPostazionePrenotata().setLibero(false);
 				postazione.save(a);		
 				savePrenotazione(p);
-			
+				
+			}else {
+				
 				System.out.println("Gia hai prenotato in questa data!");
+			}
 				
 			
 		}else {

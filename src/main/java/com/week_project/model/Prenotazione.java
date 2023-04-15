@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -53,6 +54,12 @@ public class Prenotazione {
 	}
 	public Long getIdPrenotazione() {
 		return idPrenotazione;
+	}
+	@Override
+	public String toString() {
+		return "Prenotazione [idPrenotazione=" + idPrenotazione + ", prenotazionePostazione=" + prenotazionePostazione
+				+ ", finePrenotazionePostazione=" + finePrenotazionePostazione + ", postazionePrenotata="
+				+ postazionePrenotata + ", utente=" + utente + "]";
 	}
     
     

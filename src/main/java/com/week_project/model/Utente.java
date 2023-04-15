@@ -2,7 +2,9 @@ package com.week_project.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,12 +22,15 @@ public class Utente {
 	private String username;
 	private String nome_completo;
 	private String email;
-	@OneToMany(mappedBy = "utente")
+	@OneToMany(mappedBy = "utente",fetch = FetchType.EAGER)
 	private List<Prenotazione> prenotazioni;
 	
 	
 	
 	
+	public Utente() {
+		super();
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -57,8 +62,9 @@ public class Utente {
 	@Override
 	public String toString() {
 		return "Utente [id=" + id + ", username=" + username + ", nome_completo=" + nome_completo + ", email=" + email
-				+ ", prenotazioni=" + prenotazioni + "]";
+				+ "]";
 	}
+	
 	
 	
 	
